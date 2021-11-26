@@ -1,0 +1,179 @@
+---
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+test    0.000GB
+> use assignment
+switched to db assignment
+> db.createCollection("users")
+{ "ok" : 1 }
+> db.users.insert({"first_name":"Shivam","last_name":"Sharma","email":"Male","ip_address":"12","age":"23"})
+WriteResult({ "nInserted" : 1 })
+> db.users.insert({"first_name":"Vishal","last_name":"Sharma","email":"Male","ip_address":"12","age":"24"})
+WriteResult({ "nInserted" : 1 })
+> db.users.insert({"first_name":"Rahul","last_name":"Sharma","email":"Male","ip_address":"12","age":"21"})
+WriteResult({ "nInserted" : 1 })
+> db.users.insertMany([{"first_name":"Rahul","last_name":"Sharma","email":"Male","ip_address":"12","age":"21"},{"first_name":"Shivam","last_name":"Sharma","email":"male","ip_address":"13","age":"22"}])
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("61a0fe4e9ee553314117ce3d"),
+                ObjectId("61a0fe4e9ee553314117ce3e")
+        ]
+}
+> db.users.insertMany([{"first_name":"Rahul","last_name":"Sharma","email":"Male","ip_address":"12","age":"21"},{"first_name":"Shivam","last_name":"Sharma","email":"male","ip_address":"13","age":"22"}])
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("61a0fe559ee553314117ce3f"),
+                ObjectId("61a0fe559ee553314117ce40")
+        ]
+}
+> db.users.insertMany([{"first_name":"Rahul","last_name":"Sharma","email":"Male","ip_address":"12","age":"21"},{"first_name":"Shivam","last_name":"Sharma","email":"male","ip_address":"13","age":"22"}])
+{
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("61a0fe599ee553314117ce41"),
+                ObjectId("61a0fe599ee553314117ce42")
+        ]
+}
+> db.users.find({}).pretty()
+{
+        "_id" : ObjectId("61a0fd219ee553314117ce3a"),
+        "first_name" : "Shivam",
+        "last_name" : "Sharma",
+        "email" : "Male",
+        "ip_address" : "12",
+        "age" : "23"
+}
+{
+        "_id" : ObjectId("61a0fd4b9ee553314117ce3b"),
+        "first_name" : "Vishal",
+        "last_name" : "Sharma",
+        "email" : "Male",
+        "ip_address" : "12",
+        "age" : "24"
+}
+{
+        "_id" : ObjectId("61a0fd7b9ee553314117ce3c"),
+        "first_name" : "Rahul",
+        "last_name" : "Sharma",
+        "email" : "Male",
+        "ip_address" : "12",
+        "age" : "21"
+}
+{
+        "_id" : ObjectId("61a0fe4e9ee553314117ce3d"),
+        "first_name" : "Rahul",
+        "last_name" : "Sharma",
+        "email" : "Male",
+        "ip_address" : "12",
+        "age" : "21"
+}
+{
+        "_id" : ObjectId("61a0fe4e9ee553314117ce3e"),
+        "first_name" : "Shivam",
+        "last_name" : "Sharma",
+        "email" : "male",
+        "ip_address" : "13",
+        "age" : "22"
+}
+{
+        "_id" : ObjectId("61a0fe559ee553314117ce3f"),
+        "first_name" : "Rahul",
+        "last_name" : "Sharma",
+        "email" : "Male",
+        "ip_address" : "12",
+        "age" : "21"
+}
+{
+        "_id" : ObjectId("61a0fe559ee553314117ce40"),
+        "first_name" : "Shivam",
+        "last_name" : "Sharma",
+        "email" : "male",
+        "ip_address" : "13",
+        "age" : "22"
+}
+{
+        "_id" : ObjectId("61a0fe599ee553314117ce41"),
+        "first_name" : "Rahul",
+        "last_name" : "Sharma",
+        "email" : "Male",
+        "ip_address" : "12",
+        "age" : "21"
+}
+{
+        "_id" : ObjectId("61a0fe599ee553314117ce42"),
+        "first_name" : "Shivam",
+        "last_name" : "Sharma",
+        "email" : "male",
+        "ip_address" : "13",
+        "age" : "22"
+}
+> db.users.findOne({"first_name":"Shivam"}).pretty()
+uncaught exception: TypeError: db.users.findOne(...).pretty is not a function :
+@(shell):1:1
+> db.users.findOne({"first_name":"Shivam"})
+{
+        "_id" : ObjectId("61a0fd219ee553314117ce3a"),
+        "first_name" : "Shivam",
+        "last_name" : "Sharma",
+        "email" : "Male",
+        "ip_address" : "12",
+        "age" : "23"
+}
+> db.users.find({"first_name":"Shivam"}).pretty()
+{
+        "_id" : ObjectId("61a0fd219ee553314117ce3a"),
+        "first_name" : "Shivam",
+        "last_name" : "Sharma",
+        "email" : "Male",
+        "ip_address" : "12",
+        "age" : "23"
+}
+{
+        "_id" : ObjectId("61a0fe4e9ee553314117ce3e"),
+        "first_name" : "Shivam",
+        "last_name" : "Sharma",
+        "email" : "male",
+        "ip_address" : "13",
+        "age" : "22"
+}
+{
+        "_id" : ObjectId("61a0fe559ee553314117ce40"),
+        "first_name" : "Shivam",
+        "last_name" : "Sharma",
+        "email" : "male",
+        "ip_address" : "13",
+        "age" : "22"
+}
+{
+        "_id" : ObjectId("61a0fe599ee553314117ce42"),
+        "first_name" : "Shivam",
+        "last_name" : "Sharma",
+        "email" : "male",
+        "ip_address" : "13",
+        "age" : "22"
+}
+> db.users.update({"first_name":"Shivam"},{$set:{"first_name":"Shiva"}})
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.users.updateMany({"first_name":"Shivam"},{$set:{"first_name":"Shiva"}})
+{ "acknowledged" : true, "matchedCount" : 3, "modifiedCount" : 3 }
+> db.users.remove({"first_name":"Shivam"},1)
+WriteResult({ "nRemoved" : 0 })
+> db.users.remove({"first_name":"Shiva"},1)
+WriteResult({ "nRemoved" : 1 })
+> db.users.remove({"first_name":"Shiva"})
+WriteResult({ "nRemoved" : 3 })
+> db.dropDatabase()
+{ "ok" : 1 }
+> showdbs
+uncaught exception: ReferenceError: showdbs is not defined :
+@(shell):1:1
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+test    0.000GB
+>
