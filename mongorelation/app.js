@@ -5,11 +5,9 @@ const app = express();
 app.use(express.json())
 
 
-// ---------- connecting mongoose ---//
-
 const connect = require("./configs/db")
 
-//---- creating SCHEMA and Model ----//
+//creating SCHEMA and Model
 
 const User = require("./models/user.model")
 const Section = require("./models/section.model")
@@ -17,7 +15,9 @@ const Author = require("./models/author.model")
 const Book = require("./models/books.model") 
 const Chekout = require("./models/chekout.model")
 
-//--- REST API ---
+
+//apis
+
 const userController = require("./controllers/user") 
 
 const sectionController = require("./controllers/section")
@@ -28,7 +28,6 @@ const authorController = require("./controllers/authors")
 
 const chekoutController = require("./controllers/checkout")
 
-//---- 
 app.use("/users",userController)
 app.use("/sections",sectionController)
 app.use("/books",bookController)
